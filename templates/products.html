@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<table>
+    <th>Product</th>
+    <th>Dagligt forbrug</th>
+    <th>Start værdi</th>
+    <th>Bestil</th>
+    
+        {% for product in products %} 
+        <tr>
+            <th>
+                <p>{{product.name}}</p>
+            </th>
+            <td>
+                <p><input type="number" name="value" class="input" value="{{product.start_value}}" hx-post="/value_changed/{{product.name}}" hx-trigger="change" hx-target="#purchase_amount_{{product.name}}" hx-swap="outerHTML"></p>
+            </td>
+            
+            <td>
+                <p class="table_number">{{product.start_value}}</p>
+            </td>
+            <td>
+                <p class="table_number" id="purchase_amount_{{product.name}}">{{product.required_amount - product.start_value}}</p>
+            </td>
+        </tr>
+        
+        {% endfor %}
+    </table>
+{% endblock %}

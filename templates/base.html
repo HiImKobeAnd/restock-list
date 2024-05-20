@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Restock list</title>
+
+        <script src="https://unpkg.com/htmx.org@1.9.12" integrity="sha384-ujb1lZYygJmzgSwoxRggbCHcjc0rB2XoQrxeTUQyRjrOnlCoYta87iKBWq3EsdM2" crossorigin="anonymous"></script>
+        <style>
+            table tr:nth-child(odd){background-color: white;}
+            table tr:nth-child(even){background-color: lightgray;}
+
+            table {
+                width: 100%;
+            }
+            th,td {
+                height:fit-content;
+            }
+            .input {
+                transform: scale(2);
+                transform-origin: left;
+                display: block;
+                width: 48%;
+            }
+            .table_number {
+                font-size: larger;
+                font-weight: bold;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            {% block content %}<p>Placeholder content</p>{% endblock %}
+        </div>
+    </body>
+</html>
