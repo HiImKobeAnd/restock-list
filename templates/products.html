@@ -1,37 +1,42 @@
 {% extends "base.html" %}
 
 {% block content %}
-<table>
-    <th>Product</th>
-    <th>Dagligt forbrug</th>
+<form id="restock_items">
+    <input type="submit" value="sort_count" hx-post="/sort_count" hx-target="body">
+
+    <table>
+        <th>Produkt</th>
+    <th>På hylden</th>
     <th>Bestil</th>
     
-        {% for product in products %} 
-        <tr>
-            <td>
-                <p>{{product.name}}</p>
+    
+    
+    {% for product in products %} 
+    <tr>
+        <td>
+            <p>{{product.name}}</p>
             </td>
             <td>
-                <p><input type="number" id="input_{{product.name}}" name="value" class="input" value="{{product.start_value}}" hx-post="/value_changed/{{product.name}}" hx-trigger="change" hx-target="#purchase_amount_{{product.name}}" hx-swap="outerHTML"></p>
+                <p><input type="number" id="input_{{product.name}}" name="{{product.name}}" class="input" value="{{product.start_value}}" hx-post="/value_changed" hx-trigger="change" hx-target="#purchase_amount_{{product.name}}" hx-swap="outerHTML" hx-params="{{product.name}}"></p>
             </td>
             <td>
                 <p class="table_number" id="purchase_amount_{{product.name}}">{{product.required_amount - product.start_value}}</p>
             </td>
-            <td><button class="button" onclick="plus_button(input_{{product.name}})">+</button></td>
-            <td><button class="button" onclick="minus_button(input_{{product.name}})">-</button></td>
+            <td><button type="button" class="button" onclick="plus_button(input_{{product.name}})">+</button></td>
+            <td><button type="button" class="button" onclick="minus_button(input_{{product.name}})">-</button></td>
         </tr>
         
         {% endfor %}
     </table>
+    <input type="submit" value="sort_restock" hx-post="/sort_restock" hx-target="body">
+</form>
 
     <script>
         function plus_button(button_name) {
-            console.log(button_name);
             button_name.value = +button_name.value + +1;
             button_name.dispatchEvent(new Event("change"));
         }
         function minus_button(button_name) {
-            console.log(button_name);
             button_name.value = +button_name.value - +1;
             button_name.dispatchEvent(new Event("change"));
         }
