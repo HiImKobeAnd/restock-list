@@ -170,15 +170,15 @@ pub fn get_items() -> Products {
         list_sort_number: 4,
         restock_sort_number: 100,
     };
-    let stor_poelsehorn_med_ketchup = Product {
-        name: String::from("Stor_pølsehorn_med_ketchup"),
+    let poelsehorn_med_ketchup = Product {
+        name: String::from("Pølsehorn_med_ketchup"),
         start_value: 4,
         required_amount: 4,
         list_sort_number: 11,
         restock_sort_number: 100,
     };
-    let stor_poelsehorn_med_kylling = Product {
-        name: String::from("Stor_pølsehorn_med_kylling"),
+    let poelsehorn_med_kylling = Product {
+        name: String::from("Pølsehorn_med_kylling"),
         start_value: 4,
         required_amount: 4,
         list_sort_number: 9,
@@ -212,8 +212,8 @@ pub fn get_items() -> Products {
         list_sort_number: 13,
         restock_sort_number: 100,
     };
-    let wiener_kagemand_stang = Product {
-        name: String::from("Wiener_kagemand_stang"),
+    let kagemand_stang = Product {
+        name: String::from("Kagemand_stang"),
         start_value: 3,
         required_amount: 3,
         list_sort_number: 20,
@@ -243,13 +243,13 @@ pub fn get_items() -> Products {
             kbh_birkes,
             chokolade_croissaint,
             macaron,
-            stor_poelsehorn_med_ketchup,
-            stor_poelsehorn_med_kylling,
+            poelsehorn_med_ketchup,
+            poelsehorn_med_kylling,
             lille_poelsehorn,
             pizzasnegl,
             pizza_pepperoni,
             pizza_donut,
-            wiener_kagemand_stang,
+            kagemand_stang,
         ]
         .to_vec(),
     };
