@@ -2,7 +2,7 @@
 
 {% block content %}
 <form id="restock_items">
-    <input type="submit" value="sort_count" hx-post="/sort_count" hx-target="body">
+    <input type="submit" value="sort_count" class="button" style="width: 100%;" hx-post="/sort_count" hx-target="body">
 
     <table>
         <th>Produkt</th>
@@ -28,7 +28,7 @@
         
         {% endfor %}
     </table>
-    <input type="submit" value="sort_restock" hx-post="/sort_restock" hx-target="body">
+    <input type="submit" value="sort_restock" class="button" style="width: 100%;" hx-post="/sort_restock" hx-target="body">
 </form>
 
     <script>
