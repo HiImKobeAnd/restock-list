@@ -41,7 +41,7 @@ async fn value_changed(path: web::Path<String>, form: web::Form<Item>) -> impl R
 
 async fn main() -> std::io::Result<()> {
     HttpServer::new(|| App::new().service(index).service(value_changed))
-        .bind(("127.0.0.1", 8000))?
+        .bind(("127.0.0.1", 8050))?
         .workers(4)
         .run()
         .await

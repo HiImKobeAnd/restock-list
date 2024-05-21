@@ -4,7 +4,6 @@
 <table>
     <th>Product</th>
     <th>Dagligt forbrug</th>
-    <th>Start værdi</th>
     <th>Bestil</th>
     
         {% for product in products %} 
@@ -13,17 +12,28 @@
                 <p>{{product.name}}</p>
             </th>
             <td>
-                <p><input type="number" name="value" class="input" value="{{product.start_value}}" hx-post="/value_changed/{{product.name}}" hx-trigger="change" hx-target="#purchase_amount_{{product.name}}" hx-swap="outerHTML"></p>
-            </td>
-            
-            <td>
-                <p class="table_number">{{product.start_value}}</p>
+                <p><input type="number" id="input_{{product.name}}" name="value" class="input" value="{{product.start_value}}" hx-post="/value_changed/{{product.name}}" hx-trigger="change" hx-target="#purchase_amount_{{product.name}}" hx-swap="outerHTML"></p>
             </td>
             <td>
                 <p class="table_number" id="purchase_amount_{{product.name}}">{{product.required_amount - product.start_value}}</p>
             </td>
+            <td><button class="button" onclick="plus_button(input_{{product.name}})">+</button></td>
+            <td><button class="button" onclick="minus_button(input_{{product.name}})">-</button></td>
         </tr>
         
         {% endfor %}
     </table>
+
+    <script>
+        function plus_button(button_name) {
+            console.log(button_name);
+            button_name.value = +button_name.value + +1;
+            button_name.dispatchEvent(new Event("change"));
+        }
+        function minus_button(button_name) {
+            console.log(button_name);
+            button_name.value = +button_name.value - +1;
+            button_name.dispatchEvent(new Event("change"));
+        }
+    </script>
 {% endblock %}
