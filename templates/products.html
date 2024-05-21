@@ -8,9 +8,9 @@
     
         {% for product in products %} 
         <tr>
-            <th>
+            <td>
                 <p>{{product.name}}</p>
-            </th>
+            </td>
             <td>
                 <p><input type="number" id="input_{{product.name}}" name="value" class="input" value="{{product.start_value}}" hx-post="/value_changed/{{product.name}}" hx-trigger="change" hx-target="#purchase_amount_{{product.name}}" hx-swap="outerHTML"></p>
             </td>
