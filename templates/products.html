@@ -2,7 +2,7 @@
 
 {% block content %}
 <form id="restock_items">
-    <input type="submit" value="sort_count" class="button" style="width: 100%;" hx-post="/sort_count" hx-target="body">
+    <input type="submit" value="sort_by_shelf" class="button" style="width: 100%;" hx-post="/sort_by_shelf" hx-target="body">
 
     <table>
         <th>Produkt</th>
@@ -17,7 +17,7 @@
             <p>{{product.name}}</p>
             </td>
             <td>
-                <p><input type="number" id="input_{{product.name}}" name="{{product.name}}" class="input" value="{{product.start_value}}" hx-post="/value_changed" hx-trigger="change" hx-target="#purchase_amount_{{product.name}}" hx-swap="outerHTML" hx-params="{{product.name}}"></p>
+                <p><input type="number" id="input_{{product.name}}" name="{{product.name}}" class="input" value="{{product.start_value}}" hx-post="/product_count_changed" hx-trigger="change" hx-target="#purchase_amount_{{product.name}}" hx-swap="outerHTML" hx-params="{{product.name}}"></p>
             </td>
             <td>
                 <p class="table_number" id="purchase_amount_{{product.name}}">{{product.required_amount - product.start_value}}</p>
@@ -28,7 +28,7 @@
         
         {% endfor %}
     </table>
-    <input type="submit" value="sort_restock" class="button" style="width: 100%;" hx-post="/sort_restock" hx-target="body">
+    <input type="submit" value="sort_by_restock" class="button" style="width: 100%;" hx-post="/sort_by_restock" hx-target="body">
 </form>
 
     <script>
