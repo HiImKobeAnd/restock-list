@@ -67,8 +67,8 @@ pub fn get_items() -> Products {
     };
     let brunsvigerstang = Product {
         name: String::from("Brunsvigerstang"),
-        start_value: 7,
-        required_amount: 8,
+        start_value: 6,
+        required_amount: 6,
         list_sort_number: 17,
         restock_sort_number: 7,
     };
