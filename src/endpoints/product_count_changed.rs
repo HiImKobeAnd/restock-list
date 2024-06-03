@@ -10,7 +10,7 @@ pub async fn product_count_changed(
     let items = (*data.into_inner()).products.clone().products;
     let mut map = HashMap::new();
     for item in items {
-        map.insert(item.name, item.required_amount);
+        map.insert(item.name, (item.required_amount, item.daily_use));
     }
 
     let value = map.get(&form.first().unwrap().name).unwrap();
@@ -18,6 +18,6 @@ pub async fn product_count_changed(
     HttpResponse::Ok().body(format!(
         "<p class=\"table_number\" id=\"purchase_amount_{}\">{}</p>",
         form.first().unwrap().name,
-        *value as i32 - form.first().unwrap().quantity as i32
+        (((value.1 * 2) + value.0) - form.first().unwrap().quantity).clamp(0, 10) // The clamp will be problematic if the product's tri-daily restock needs exceed 10
     ))
 }

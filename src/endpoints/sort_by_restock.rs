@@ -35,6 +35,7 @@ pub async fn sort_by_restock(
             required_amount: *product_map.get(&item.0).unwrap(),
             list_sort_number: 0,
             restock_sort_number: 0,
+            daily_use: 0,
         });
     }
 
