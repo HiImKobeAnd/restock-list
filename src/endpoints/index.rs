@@ -4,6 +4,7 @@ use askama::Template;
 
 #[get("/")]
 pub async fn index(data: web::Data<AppData>) -> impl Responder {
-    let items = &(*data.into_inner()).products;
-    HttpResponse::Ok().body(items.render().unwrap())
+    let products = &(*data.into_inner()).products;
+
+    HttpResponse::Ok().body(products.render().unwrap())
 }
