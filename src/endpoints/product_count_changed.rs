@@ -8,10 +8,10 @@ pub async fn product_count_changed(
     data: web::Data<AppData>,
 ) -> impl Responder {
     let data = data.borrow();
-    let map = data.products_map.clone();
+    let products_map = data.products_map.clone();
 
     let form_product = form.first().unwrap();
-    let product = map.get(&form.first().unwrap().name).unwrap();
+    let product = products_map.get(&form.first().unwrap().name).unwrap();
 
     HttpResponse::Ok().body(format!(
         "<p class=\"table_number\" id=\"purchase_amount_{}\">{}</p>",

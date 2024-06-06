@@ -1,7 +1,6 @@
 use actix_web::{web, App, HttpServer};
 use restock_list::endpoints::{
-    index::index, product_count_changed::product_count_changed, sort_by_restock::sort_by_restock,
-    sort_by_shelf::sort_by_shelf,
+    index::index, product_count_changed::product_count_changed, sort::sort,
 };
 
 use restock_list::products::get_products_map;
@@ -20,8 +19,7 @@ async fn main() -> std::io::Result<()> {
             }))
             .service(index)
             .service(product_count_changed)
-            .service(sort_by_shelf)
-            .service(sort_by_restock)
+            .service(sort)
     })
     .bind(("127.0.0.1", 8050))?
     .workers(2)
