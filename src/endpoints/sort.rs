@@ -33,7 +33,8 @@ pub async fn sort(
     let products = data.products.products.clone();
     let sort_method_string = path.into_inner();
 
-    let sort_method = SortMethod::try_from(sort_method_string.as_str()).unwrap();
+    let sort_method =
+        SortMethod::try_from(sort_method_string.as_str()).unwrap_or(SortMethod::Shelf);
 
     let mut vec = Vec::new();
     for product in products.clone() {
