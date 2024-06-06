@@ -28,7 +28,6 @@ pub async fn sort(
     data: web::Data<AppData>,
     path: web::Path<String>,
 ) -> impl Responder {
-    let data = data;
     let products_map = data.products_map.clone();
     let products = data.products.products.clone();
     let sort_method_string = path.into_inner();
