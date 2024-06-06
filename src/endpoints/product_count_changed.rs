@@ -10,12 +10,13 @@ pub async fn product_count_changed(
     let data = data.borrow();
     let map = data.products_map.clone();
 
+    let form_product = form.first().unwrap();
     let product = map.get(&form.first().unwrap().name).unwrap();
 
     HttpResponse::Ok().body(format!(
         "<p class=\"table_number\" id=\"purchase_amount_{}\">{}</p>",
-        form.first().unwrap().name,
-        (((product.required_amount * 2) + product.daily_use) - form.first().unwrap().quantity)
+        form_product.name,
+        ((product.daily_use * 2 + product.required_amount) - form_product.quantity)
             .clamp(0, product.required_amount + product.daily_use)
     ))
 }
