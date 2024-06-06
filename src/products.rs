@@ -49,7 +49,7 @@ pub fn get_products() -> Products {
         required_amount: 8,
         list_sort_number: 19,
         restock_sort_number: 3,
-        daily_use: 0,
+        daily_use: 1,
     };
     let lille_poelsehorn = Product {
         name: String::from("Smo_polsehorn"),
@@ -89,7 +89,7 @@ pub fn get_products() -> Products {
         required_amount: 8,
         list_sort_number: 8,
         restock_sort_number: 8,
-        daily_use: 0,
+        daily_use: 1,
     };
     let pizza_pepperoni = Product {
         name: String::from("Pizza_pepperoni"),
