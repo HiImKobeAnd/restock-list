@@ -1,3 +1,5 @@
+use std::{collections::HashMap, hash::Hash};
+
 use askama::Template;
 
 #[derive(Template, Clone)]
@@ -16,7 +18,7 @@ pub struct Product {
     pub daily_use: i32,
 }
 
-pub fn get_items() -> Products {
+pub fn get_products() -> Products {
     let onsdags_snegl = Product {
         name: String::from("Onsdags_snegl"),
         start_value: 3,
@@ -241,38 +243,49 @@ pub fn get_items() -> Products {
         restock_sort_number: 27,
         daily_use: 0,
     };
-    let products = Products {
-        products: [
-            onsdags_snegl,
-            kaernemaelkshorn,
-            skagenshorn,
-            kanelstang,
-            lille_poelsehorn,
-            cremestang,
-            kagemand_stang,
-            brunsvigerstang,
-            hoej_snegl,
-            pizza_pepperoni,
-            brunsviger_knude,
-            choco_donut,
-            kakaocroissaint,
-            pink_donut,
-            pizzasnegl,
-            sprinkled_donut,
-            birkes,
-            grovbirkes,
-            kanelsnurre,
-            kbh_birkes,
-            snurre_med_remonce,
-            cremebolle,
-            poelsehorn_med_kylling,
-            poelsehorn_med_ketchup,
-            macaron,
-            morgenstang,
-            chokolade_croissaint,
-            croissaint,
-        ]
-        .to_vec(),
-    };
-    products
+    let products = [
+        onsdags_snegl,
+        kaernemaelkshorn,
+        skagenshorn,
+        kanelstang,
+        lille_poelsehorn,
+        cremestang,
+        kagemand_stang,
+        brunsvigerstang,
+        hoej_snegl,
+        pizza_pepperoni,
+        brunsviger_knude,
+        choco_donut,
+        kakaocroissaint,
+        pink_donut,
+        pizzasnegl,
+        sprinkled_donut,
+        birkes,
+        grovbirkes,
+        kanelsnurre,
+        kbh_birkes,
+        snurre_med_remonce,
+        cremebolle,
+        poelsehorn_med_kylling,
+        poelsehorn_med_ketchup,
+        macaron,
+        morgenstang,
+        chokolade_croissaint,
+        croissaint,
+    ];
+
+    Products {
+        products: products.to_vec(),
+    }
+}
+
+pub fn get_products_map() -> HashMap<String, Product> {
+    let products = get_products();
+
+    let mut map = HashMap::new();
+    for product in products.products {
+        map.insert(product.name.clone(), product);
+    }
+
+    map
 }

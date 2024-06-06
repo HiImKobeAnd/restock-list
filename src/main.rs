@@ -4,16 +4,19 @@ use restock_list::endpoints::{
     sort_by_shelf::sort_by_shelf,
 };
 
-use restock_list::{data::AppData, products::get_items};
+use restock_list::products::get_products_map;
+use restock_list::{data::AppData, products::get_products};
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    let products = get_items();
+    let products = get_products();
+    let products_map = get_products_map();
 
     HttpServer::new(move || {
         App::new()
             .app_data(web::Data::new(AppData {
                 products: products.clone(),
+                products_map: products_map.clone(),
             }))
             .service(index)
             .service(product_count_changed)

@@ -1,4 +1,6 @@
-use crate::products::Products;
+use std::collections::HashMap;
+
+use crate::products::{Product, Products};
 use serde::Deserialize;
 
 #[derive(Deserialize, Debug)]
@@ -10,4 +12,5 @@ pub struct Item {
 
 pub struct AppData {
     pub products: Products,
+    pub products_map: HashMap<String, Product>,
 }
