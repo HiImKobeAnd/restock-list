@@ -38,8 +38,8 @@ pub async fn sort(
     let mut vec = Vec::new();
     for product in products.clone() {
         match sort_method {
-            SortMethod::Restock => vec.push((product.name, product.list_sort_number)),
-            SortMethod::Shelf => vec.push((product.name, product.restock_sort_number)),
+            SortMethod::Restock => vec.push((product.name, product.restock_sort_number)),
+            SortMethod::Shelf => vec.push((product.name, product.shelf_sort_number)),
         }
     }
 
@@ -56,7 +56,7 @@ pub async fn sort(
             name: product.0.clone(),
             start_value: *form_map.get(&product.0).unwrap(),
             required_amount: products_map.get(&product.0).unwrap().required_amount,
-            list_sort_number: 0,
+            shelf_sort_number: 0,
             restock_sort_number: 0,
             daily_use: 0,
         });
