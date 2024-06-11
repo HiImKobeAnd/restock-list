@@ -15,4 +15,5 @@ name = "restock_list"
 [dependencies]
 actix-web = { version = "4.5.1" }
 askama = { version = "0.12.1" }
+config = "0.14.0"
 serde = { version = "1.0.202", features = ["derive"] }

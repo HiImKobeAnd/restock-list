@@ -1,4 +1,5 @@
 use actix_web::{web, App, HttpServer};
+use restock_list::configuration::get_configuration;
 use restock_list::endpoints::{
     index::index, product_count_changed::product_count_changed, sort::sort,
 };
@@ -11,6 +12,8 @@ async fn main() -> std::io::Result<()> {
     let products = get_products();
     let products_map = get_products_map();
 
+    let configuration = get_configuration().expect("Failed to get configuration.");
+
     HttpServer::new(move || {
         App::new()
             .app_data(web::Data::new(AppData {
@@ -21,7 +24,7 @@ async fn main() -> std::io::Result<()> {
             .service(product_count_changed)
             .service(sort)
     })
-    .bind(("127.0.0.1", 8050))?
+    .bind(("127.0.0.1", configuration.application_port))?
     .workers(2)
     .run()
     .await
