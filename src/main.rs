@@ -4,13 +4,13 @@ use restock_list::endpoints::{
     index::index, product_count_changed::product_count_changed, sort::sort,
 };
 
-use restock_list::products::get_products_map;
-use restock_list::{data::AppData, products::get_products};
+use restock_list::data::AppData;
+use restock_list::products::{get_products_map, import_products_from_file};
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    let products = get_products();
-    let products_map = get_products_map();
+    let products = import_products_from_file();
+    let products_map = get_products_map(products.clone());
 
     let configuration = get_configuration().expect("Failed to get configuration.");
 
