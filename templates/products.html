@@ -17,13 +17,13 @@
             <p>{{product.name}}</p>
             </td>
             <td>
-                <p><input type="number" id="input_{{product.name}}" name="{{product.name}}" class="input" value="{{product.start_value}}" hx-post="/product_count_changed" hx-trigger="change" hx-target="#purchase_amount_{{product.name}}" hx-swap="outerHTML" hx-params="{{product.name}}"></p>
+                <p><input type="number" id="input_{{product.name}}" value="{{product.start_value}}" class="input" min="0"></p>
             </td>
             <td>
-                <p id="purchase_amount_{{product.name}}">{{(product.daily_use * 2 + product.required_amount) - product.start_value}}</p>
+                <p id="purchase_amount_{{product.name}}" ">{{(product.daily_use * 2 + product.required_amount) - product.start_value}}</p>
             </td>
-            <td><button type="button" class="button" onclick="plus_button(input_{{product.name}})">+</button></td>
-            <td><button type="button" class="button" onclick="minus_button(input_{{product.name}})">-</button></td>
+            <td><button type="button" class="button" onclick="plus_button(input_{{product.name}}, purchase_amount_{{product.name}})">+</button></td>
+            <td><button type="button" class="button" onclick="minus_button(input_{{product.name}}, purchase_amount_{{product.name}})">-</button></td>
         </tr>
         
         {% endfor %}
@@ -32,13 +32,50 @@
 </form>
 
     <script>
-        function plus_button(button_name) {
-            button_name.value = +button_name.value + +1;
-            button_name.dispatchEvent(new Event("change"));
+        let server_data = null;
+        fetch_data_from_server()
+
+        function fetch_data_from_server() {
+            fetch("/get_data")
+            .then(response => response.json())
+            .then(data => {server_data = data;})
+            .catch(error => console.error("Failed to get data", error));
         }
-        function minus_button(button_name) {
-            button_name.value = +button_name.value - +1;
-            button_name.dispatchEvent(new Event("change"));
+
+        function plus_button(input_name, order_amount) {
+            if (server_data) {
+                input_name.value = Math.max(+input_name.value + 1, 0);
+
+                let current_amount = calculate_order_amount(input_name);
+                order_amount.innerHTML = current_amount;
+            } else {
+                alert("Data not fetched correctly")
+            }
+        }
+        function minus_button(input_name, order_amount) {
+            if (server_data) {
+                input_name.value = Math.max(+input_name.value - 1, 0);
+                
+                let current_amount = calculate_order_amount(input_name);
+                order_amount.innerHTML = current_amount;
+            } else {
+                alert("Data not fetched correctly")
+            }
+        }
+
+        function calculate_order_amount(input_name) {
+            let current_product = null;
+            let name = input_name.id.split("_").toSpliced(0,1).join("_");
+            for (let product of server_data.products) {
+                if (product.name == name) {
+                    current_product = product;
+                    break;
+                }
+            }
+            
+            let x = ((current_product.daily_use * 2 + current_product.required_amount) - input_name.value);
+            x = Math.min(Math.max(x, 0), current_product.required_amount + current_product.daily_use);
+            return x;
         }
     </script>
 {% endblock %}
