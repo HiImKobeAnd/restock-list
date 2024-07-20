@@ -1,8 +1,7 @@
 use actix_web::{web, App, HttpServer};
 use restock_list::configuration::get_configuration;
-use restock_list::endpoints::{
-    index::index, product_count_changed::product_count_changed, sort::sort,
-};
+use restock_list::endpoints::send_products_data;
+use restock_list::endpoints::{index::index, sort::sort};
 
 use restock_list::data::AppData;
 use restock_list::products::{get_products_map, import_products_from_file};
@@ -21,8 +20,8 @@ async fn main() -> std::io::Result<()> {
                 products_map: products_map.clone(),
             }))
             .service(index)
-            .service(product_count_changed)
             .service(sort)
+            .service(send_products_data)
     })
     .bind(("127.0.0.1", configuration.application_port))?
     .workers(2)
