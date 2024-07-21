@@ -44,7 +44,7 @@
 
         function plus_button(input_name, order_amount) {
             if (server_data) {
-                input_name.value = Math.max(+input_name.value + 1, 0);
+                input_name.stepUp();
 
                 let current_amount = calculate_order_amount(input_name);
                 order_amount.innerHTML = current_amount;
@@ -54,7 +54,7 @@
         }
         function minus_button(input_name, order_amount) {
             if (server_data) {
-                input_name.value = Math.max(+input_name.value - 1, 0);
+                input_name.stepDown();
                 
                 let current_amount = calculate_order_amount(input_name);
                 order_amount.innerHTML = current_amount;
