@@ -17,7 +17,7 @@
             <p>{{product.name}}</p>
             </td>
             <td>
-                <p><input type="number" id="input_{{product.name}}" value="{{product.start_value}}" class="input" min="0"></p>
+                <p><input type="number" id="input_{{product.name}}" name="{{product.name}}" value="{{product.start_value}}" class="input" min="0"></p>
             </td>
             <td>
                 <p id="purchase_amount_{{product.name}}" ">{{(product.daily_use * 2 + product.required_amount) - product.start_value}}</p>
