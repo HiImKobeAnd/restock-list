@@ -120,58 +120,58 @@ products:
   restock_sort_number: 30
   daily_use: 0
 - name: Brunsviger_knude
-  start_value: 6
-  required_amount: 8
+  start_value: 4
+  required_amount: 4
   shelf_sort_number: 21
   restock_sort_number: 11
+  daily_use: 0
+- name: Cremebolle
+  start_value: 4
+  required_amount: 4
+  shelf_sort_number: 22
+  restock_sort_number: 23
   daily_use: 0
 - name: Morgenstang
   start_value: 2
   required_amount: 8
-  shelf_sort_number: 22
+  shelf_sort_number: 23
   restock_sort_number: 28
   daily_use: 2
 - name: Kanelstang
   start_value: 5
   required_amount: 8
-  shelf_sort_number: 23
+  shelf_sort_number: 24
   restock_sort_number: 3
   daily_use: 1
 - name: Kagemandstang
   start_value: 3
   required_amount: 3
-  shelf_sort_number: 24
+  shelf_sort_number: 25
   restock_sort_number: 6
   daily_use: 0
 - name: Kanelsnurre
   start_value: 4
   required_amount: 4
-  shelf_sort_number: 25
+  shelf_sort_number: 26
   restock_sort_number: 19
   daily_use: 0
 - name: Snurre_med_remonce
   start_value: 4
   required_amount: 4
-  shelf_sort_number: 26
+  shelf_sort_number: 27
   restock_sort_number: 21
   daily_use: 0
 - name: Brunsvigerstang
   start_value: 6
   required_amount: 6
-  shelf_sort_number: 27 
+  shelf_sort_number: 28 
   restock_sort_number: 7
   daily_use: 0
 - name: Onsdags_snegl
   start_value: 3
   required_amount: 10
-  shelf_sort_number: 28
-  restock_sort_number: 0
-  daily_use: 0
-- name: Cremebolle
-  start_value: 2
-  required_amount: 4
   shelf_sort_number: 29
-  restock_sort_number: 23
+  restock_sort_number: 0
   daily_use: 0
 - name: Skagenshorn
   start_value: 2
