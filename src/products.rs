@@ -29,12 +29,13 @@ pub fn get_products_map(products: Products) -> HashMap<String, Product> {
 
 pub fn export_products_to_file(products: Products) {
     let products_yaml =
-        serde_yml::to_string(&products).expect("Failed to serialize products to YAML");
+        serde_norway::to_string(&products).expect("Failed to serialize products to YAML");
     fs::write("products.yaml", products_yaml).expect("Failed to write products.yaml");
 }
 
 pub fn import_products_from_file() -> Products {
     let products_string =
         fs::read_to_string("products.yaml").expect("Failed to read products.yaml");
-    serde_yml::from_str(products_string.as_str()).expect("Failed to deserialize products from YAML")
+    serde_norway::from_str(products_string.as_str())
+        .expect("Failed to deserialize products from YAML")
 }
