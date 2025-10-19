@@ -1,0 +1,14 @@
+[Unit]
+Description=Restock List http server
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/restock_list
+Restart=on-failure
+User=ubuntu
+Group=ubuntu
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
