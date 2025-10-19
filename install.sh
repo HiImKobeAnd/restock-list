@@ -1,3 +1,4 @@
+mkdir /opt/restock_list
 cp ./target/release/restock_list /opt/restock_list
 cp ./products.yaml /opt/restock_list
 cp ./configuration.yaml /opt/restock_list

@@ -4,6 +4,7 @@ After=network.target
 
 [Service]
 ExecStart=/usr/local/bin/restock_list
+WorkingDirectory=/opt/restock_list
 Restart=on-failure
 User=ubuntu
 Group=ubuntu
