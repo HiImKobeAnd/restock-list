@@ -30,7 +30,7 @@
           cargo
           cargo-deny
           cargo-edit
-          cargo-watch
+          bacon
         ];
       in
       {
